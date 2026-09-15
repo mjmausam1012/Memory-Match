@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FloatingKeyboard from "./FloatingKeyboard";
 import bgImg from "../assets/bg-img.png";
 import nebuloidLogo from "../assets/nebuloid-logo.png";
 
@@ -172,6 +173,36 @@ export default function PreGameLobby({ onCancel, onStart }) {
     },
   ];
 
+  const [activeField, setActiveField] = useState("teamA");
+  const [keyboardOpen, setKeyboardOpen] = useState(true);
+
+  const TEAM_A_PRESETS = ["Lions", "Tigers", "Dragons", "Warriors", "Alpha", "Strikers"];
+  const TEAM_B_PRESETS = ["Titans", "Vikings", "Phoenix", "Hawks", "Omega", "Vipers"];
+  const SOLO_PRESETS = ["Alex", "Sam", "Champion", "Ace", "Nova", "Speedy"];
+
+  const handleKeyboardChange = (newVal) => {
+    if (activeField === "teamA") {
+      setCfg((prev) => ({ ...prev, teamA: newVal }));
+    } else {
+      setCfg((prev) => ({ ...prev, teamB: newVal }));
+    }
+    setErrorMsg("");
+  };
+
+  const handleKeyboardEnter = () => {
+    if (cfg.mode === "team") {
+      if (activeField === "teamA") {
+        setActiveField("teamB");
+        return;
+      }
+    }
+    handleStart();
+  };
+
+  const handleSwitchField = () => {
+    setActiveField((prev) => (prev === "teamA" ? "teamB" : "teamA"));
+  };
+
   const handleStart = () => {
     setErrorMsg("");
     if (cfg.mode === "team") {
@@ -244,10 +275,19 @@ export default function PreGameLobby({ onCancel, onStart }) {
               onClick={() => {
                 if (m.id === "team") {
                   setCfg({ ...cfg, mode: "team", teamB: "Team B" });
+                  setActiveField("teamA");
+                  setKeyboardOpen(true);
                   setStep(3);
                 } else {
-                  // Robot mode: set mode to robot, opponent to Robot, and prompt for player name in step 3
-                  setCfg({ ...cfg, mode: "robot", teamB: "Robot", teamA: cfg.teamA === "Team A" ? "Player 1" : cfg.teamA });
+                  // Robot mode
+                  setCfg({
+                    ...cfg,
+                    mode: "robot",
+                    teamB: "Robot",
+                    teamA: cfg.teamA === "Team A" ? "Player 1" : cfg.teamA,
+                  });
+                  setActiveField("teamA");
+                  setKeyboardOpen(true);
                   setStep(3);
                 }
               }}
@@ -262,10 +302,153 @@ export default function PreGameLobby({ onCancel, onStart }) {
 
       {/* Step 3: Team / Player Setup */}
       {step === 3 && (
-        <section className="mm-setup-card" aria-label="Player Setup">
-          <div className="space-y-4">
-            {cfg.mode === "robot" ? (
-              <div>
+        <section
+          className={`mm-setup-container ${cfg.mode === "robot" ? "single" : ""}`}
+          aria-label="Player Setup"
+        >
+          {/* Subhead info badge & keyboard toggle */}
+          <div className="mm-setup-subhead">
+            <div className="mm-setup-badge">
+              <span>{cfg.difficulty} Level</span>
+              <span>•</span>
+              <span>{cfg.mode === "team" ? "Team vs Team" : "Solo vs Robot"}</span>
+            </div>
+
+            <button
+              type="button"
+              className={`mm-kb-toggle-btn ${keyboardOpen ? "active" : ""}`}
+              onClick={() => setKeyboardOpen((prev) => !prev)}
+              title={keyboardOpen ? "Minimize on-screen keyboard" : "Open on-screen keyboard"}
+            >
+              <span>⌨️</span>
+              <span>{keyboardOpen ? "Hide Keyboard" : "Show Keyboard"}</span>
+            </button>
+          </div>
+
+          {cfg.mode === "team" ? (
+            /* Team vs Team Layout */
+            <div className="mm-teams-duo">
+              {/* Team A Card */}
+              <div
+                className={`mm-team-box team-a ${activeField === "teamA" ? "active" : ""}`}
+                onClick={() => {
+                  setActiveField("teamA");
+                  setKeyboardOpen(true);
+                }}
+              >
+                <div className="mm-team-box-header">
+                  <div className="mm-team-tag tag-a">🏆 Team A</div>
+                  {activeField === "teamA" && (
+                    <span className="mm-active-tag">● TYPING HERE</span>
+                  )}
+                </div>
+
+                <label className="mm-setup-label">Team A Name</label>
+                <input
+                  className="mm-setup-input"
+                  value={cfg.teamA}
+                  onChange={(e) => {
+                    setCfg({ ...cfg, teamA: e.target.value });
+                    setErrorMsg("");
+                  }}
+                  onFocus={() => {
+                    setActiveField("teamA");
+                    setKeyboardOpen(true);
+                  }}
+                  placeholder="Enter Team A name"
+                  maxLength={18}
+                />
+
+                {/* Quick Presets */}
+                <div className="mm-preset-chips" title="Quick Team Names">
+                  {TEAM_A_PRESETS.map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      className="mm-preset-chip"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCfg({ ...cfg, teamA: preset });
+                        setActiveField("teamB");
+                        setErrorMsg("");
+                      }}
+                    >
+                      {preset}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Center VS Badge */}
+              <div className="mm-vs-badge">VS</div>
+
+              {/* Team B Card */}
+              <div
+                className={`mm-team-box team-b ${activeField === "teamB" ? "active" : ""}`}
+                onClick={() => {
+                  setActiveField("teamB");
+                  setKeyboardOpen(true);
+                }}
+              >
+                <div className="mm-team-box-header">
+                  <div className="mm-team-tag tag-b">⚔️ Team B</div>
+                  {activeField === "teamB" && (
+                    <span className="mm-active-tag">● TYPING HERE</span>
+                  )}
+                </div>
+
+                <label className="mm-setup-label">Team B Name</label>
+                <input
+                  className="mm-setup-input"
+                  value={cfg.teamB}
+                  onChange={(e) => {
+                    setCfg({ ...cfg, teamB: e.target.value });
+                    setErrorMsg("");
+                  }}
+                  onFocus={() => {
+                    setActiveField("teamB");
+                    setKeyboardOpen(true);
+                  }}
+                  placeholder="Enter Team B name"
+                  maxLength={18}
+                />
+
+                {/* Quick Presets */}
+                <div className="mm-preset-chips" title="Quick Team Names">
+                  {TEAM_B_PRESETS.map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      className="mm-preset-chip"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCfg({ ...cfg, teamB: preset });
+                        setErrorMsg("");
+                      }}
+                    >
+                      {preset}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* Solo Robot Mode Layout */
+            <div className="space-y-3.5">
+              <div
+                className={`mm-team-box team-a ${activeField === "teamA" ? "active" : ""}`}
+                onClick={() => {
+                  setActiveField("teamA");
+                  setKeyboardOpen(true);
+                }}
+              >
+                <div className="mm-team-box-header">
+                  <div className="mm-team-tag tag-a">👤 Player</div>
+                  {activeField === "teamA" && (
+                    <span className="mm-active-tag">● TYPING HERE</span>
+                  )}
+                </div>
+
                 <label className="mm-setup-label">ENTER YOUR NAME</label>
                 <input
                   className="mm-setup-input"
@@ -274,55 +457,59 @@ export default function PreGameLobby({ onCancel, onStart }) {
                     setCfg({ ...cfg, teamA: e.target.value });
                     setErrorMsg("");
                   }}
+                  onFocus={() => {
+                    setActiveField("teamA");
+                    setKeyboardOpen(true);
+                  }}
                   placeholder="Enter your name (e.g. Alex)"
+                  maxLength={18}
                   autoFocus
                 />
-                <div className="mt-3 p-3 bg-[#fff9ee] rounded-xl border border-[#ecd5bd] text-xs text-[#704824] flex items-center gap-2.5">
-                  <span className="text-2xl">🤖</span>
+
+                <div className="mm-preset-chips" title="Quick Name Suggestions">
+                  {SOLO_PRESETS.map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      className="mm-preset-chip"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCfg({ ...cfg, teamA: preset });
+                        setErrorMsg("");
+                      }}
+                    >
+                      {preset}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Robot Opponent Info */}
+              <div className="p-3.5 bg-[#fff9ee] rounded-2xl border border-[#ecd5bd] text-xs text-[#704824] flex items-center gap-3">
+                <span className="text-3xl">🤖</span>
+                <div>
+                  <div className="font-extrabold text-[#381804] text-sm mb-0.5">
+                    Opponent: Nebuloid AI Robot
+                  </div>
                   <span>
-                    You will play vs <strong>Nebuloid AI Robot</strong>. Defeat the robot to earn your official <strong>Nebuloid Victory Certificate</strong>!
+                    Defeat the AI to earn your official{" "}
+                    <strong>Nebuloid Victory Certificate</strong>!
                   </span>
                 </div>
               </div>
-            ) : (
-              <>
-                <div>
-                  <label className="mm-setup-label">Team A Name</label>
-                  <input
-                    className="mm-setup-input"
-                    value={cfg.teamA}
-                    onChange={(e) => {
-                      setCfg({ ...cfg, teamA: e.target.value });
-                      setErrorMsg("");
-                    }}
-                    placeholder="Enter Team A name"
-                  />
-                </div>
-
-                <div>
-                  <label className="mm-setup-label">Team B Name</label>
-                  <input
-                    className="mm-setup-input"
-                    value={cfg.teamB}
-                    onChange={(e) => {
-                      setCfg({ ...cfg, teamB: e.target.value });
-                      setErrorMsg("");
-                    }}
-                    placeholder="Enter Team B name"
-                  />
-                </div>
-              </>
-            )}
-          </div>
+            </div>
+          )}
 
           {errorMsg && (
-            <div className="mt-4 p-3 bg-red-50 text-red-700 font-bold text-sm rounded-xl border border-red-200 text-center">
+            <div className="mt-3 p-3 bg-red-50 text-red-700 font-bold text-sm rounded-xl border border-red-200 text-center">
               {errorMsg}
             </div>
           )}
 
-          <div className="mt-6 flex items-center justify-between gap-3">
+          {/* Action Buttons */}
+          <div className="mt-5 flex items-center justify-between gap-3">
             <button
+              type="button"
               className="mm-pill-btn"
               onClick={() => {
                 setStep(2);
@@ -331,7 +518,9 @@ export default function PreGameLobby({ onCancel, onStart }) {
             >
               ← Back
             </button>
+
             <button
+              type="button"
               className="mm-pill-btn"
               style={{
                 background: "linear-gradient(180deg, #3d1a08 0%, #200c03 100%)",
@@ -346,10 +535,28 @@ export default function PreGameLobby({ onCancel, onStart }) {
         </section>
       )}
 
-      {/* Bottom Bar matching StartScreen and Reference Image */}
-      <footer className="mm-bottom-bar">
+      {/* Floating Keyboard for Team / Player Setup */}
+      {step === 3 && (
+        <FloatingKeyboard
+          value={activeField === "teamA" ? cfg.teamA : cfg.teamB}
+          onChange={handleKeyboardChange}
+          onEnter={handleKeyboardEnter}
+          isOpen={keyboardOpen}
+          onClose={() => setKeyboardOpen(false)}
+          activeFieldName={
+            activeField === "teamA"
+              ? cfg.mode === "robot"
+                ? "Your Name"
+                : "Team A"
+              : "Team B"
+          }
+          onSwitchField={cfg.mode === "team" ? handleSwitchField : null}
+          switchFieldLabel={activeField === "teamA" ? "Team B ➔" : "Team A ➔"}
+        />
+      )}
 
-      </footer>
+      {/* Bottom Bar matching StartScreen and Reference Image */}
+      <footer className="mm-bottom-bar"></footer>
     </main>
   );
 }

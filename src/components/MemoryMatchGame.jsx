@@ -180,28 +180,6 @@ function MemoryMatchGame({ config, onGoHome }) {
           </svg>
           <span>Reset Match</span>
         </button>
-
-        {onGoHome && (
-          <button 
-            className="mm-pill-btn"
-            onClick={onGoHome} 
-            type="button"
-          >
-            <svg 
-              className="mm-pill-icon-home" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth={2.2} 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <path d="m3 9.5 9-7 9 7V20a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 20V9.5Z" />
-              <path d="M9 21v-7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v7" />
-            </svg>
-            <span>Quit To Home</span>
-          </button>
-        )}
       </footer>
 
       {/* Game Over Modal overlay */}
@@ -209,7 +187,7 @@ function MemoryMatchGame({ config, onGoHome }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 font-sans animate-fade-in">
           <div className="mm-panel text-center max-w-md w-full relative overflow-hidden transform transition-all scale-100 p-8">
             <div className="text-6xl mb-3 filter drop-shadow-md">🏆</div>
-            <h2 className="text-3xl font-extrabold text-[#381804] mb-2 font-serif italic">
+            <h2 className="text-3xl font-black text-[#381804] mb-2 font-sans tracking-wide">
               {winner === "TIE" ? "IT'S A TIE!" : `${winner} WINS!`}
             </h2>
             
@@ -275,7 +253,7 @@ function MemoryMatchGame({ config, onGoHome }) {
                       className="mm-pill-btn justify-center w-full py-2.5 bg-[#f8be68]"
                       onClick={onGoHome}
                     >
-                      Quit To Home
+                      Back To Home
                     </button>
                   )}
                 </div>

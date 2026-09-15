@@ -106,7 +106,7 @@ export default function CertificateModal({
 
       // Certificate Title
       ctx.fillStyle = "#381804";
-      ctx.font = "italic bold 64px 'Playfair Display', Georgia, serif";
+      ctx.font = "900 64px 'Plus Jakarta Sans', Arial, sans-serif";
       ctx.fillText("CERTIFICATE OF VICTORY", 960, 340);
 
       // Decorative divider below title
@@ -132,7 +132,7 @@ export default function CertificateModal({
 
       // WINNER NAME
       ctx.fillStyle = "#2e1202";
-      ctx.font = "italic 900 84px 'Playfair Display', Georgia, serif";
+      ctx.font = "900 84px 'Plus Jakarta Sans', Arial, sans-serif";
       ctx.fillText(winnerName, 960, 565);
 
       // Underline for winner name
@@ -235,7 +235,7 @@ export default function CertificateModal({
 
       // Right: Authorized Signature
       ctx.fillStyle = "#2e1202";
-      ctx.font = "italic 700 24px 'Playfair Display', serif";
+      ctx.font = "700 24px 'Plus Jakarta Sans', Arial, sans-serif";
       ctx.fillText("Nebuloid Tech Studio", 1560, 1065);
       ctx.strokeStyle = "#9d651d";
       ctx.lineWidth = 1.5;
@@ -297,7 +297,7 @@ export default function CertificateModal({
           </div>
 
           {/* Title */}
-          <h1 className="font-serif italic font-extrabold text-2xl md:text-4xl text-[#381804] mb-1 tracking-wide">
+          <h1 className="font-sans font-black text-2xl md:text-4xl text-[#381804] mb-1 tracking-wide">
             CERTIFICATE OF VICTORY
           </h1>
           <div className="w-36 h-0.5 bg-[#c87d25] mx-auto mb-4 relative">
@@ -310,7 +310,7 @@ export default function CertificateModal({
 
           {/* Winner Name */}
           <div className="my-3">
-            <h2 className="font-serif italic font-black text-3xl md:text-5xl text-[#2e1202] tracking-wide">
+            <h2 className="font-sans font-black text-3xl md:text-5xl text-[#2e1202] tracking-wide">
               {winnerName}
             </h2>
             <div className="w-64 md:w-96 h-0.5 bg-[#c87d25] mx-auto mt-2"></div>
@@ -357,7 +357,7 @@ export default function CertificateModal({
             </div>
 
             <div className="text-right">
-              <span className="font-serif italic font-bold text-sm md:text-base text-[#2e1202] block">
+              <span className="font-sans font-bold text-sm md:text-base text-[#2e1202] block">
                 Nebuloid Tech Studio
               </span>
               <span className="text-[10px] font-bold text-[#82542a]">AUTHORIZED SIGNATORY</span>

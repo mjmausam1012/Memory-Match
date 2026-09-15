@@ -74,25 +74,6 @@ function App({ onExitGame }) {
               <span className="mm-pill-qm">?</span>
               <span>How To Play</span>
             </button>
-
-            <button
-              className="mm-pill-btn"
-              onClick={handleQuitToHome}
-            >
-              <svg
-                className="mm-pill-icon-home"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m3 9.5 9-7 9 7V20a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 20V9.5Z" />
-                <path d="M9 21v-7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v7" />
-              </svg>
-              <span>Quit To Home</span>
-            </button>
           </footer>
         </main>
       )}

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700;1,800;1,900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap");
 
 .mm-start-app {
   min-height: 100vh;
@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   background: #faeed7;
-  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: #2b1404;
   overflow-x: hidden;
 }
@@ -89,14 +89,14 @@
 }
 
 .mm-main-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-style: italic;
-  font-weight: 800;
-  font-size: clamp(42px, 6.4vw, 82px);
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: clamp(38px, 6.2vw, 78px);
   line-height: 1.05;
   margin: 0;
   color: #381804;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
 }
 
@@ -221,9 +221,10 @@
 }
 
 .mm-panel h1 {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 38px;
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 36px;
   color: #381804;
   margin: 6px 0 16px;
   letter-spacing: -0.5px;
@@ -315,14 +316,14 @@
 }
 
 .mm-lobby-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-style: italic;
-  font-weight: 800;
-  font-size: clamp(34px, 5.2vw, 68px);
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: clamp(30px, 4.6vw, 58px);
   line-height: 1.1;
   margin: 0;
   color: #381804;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
 }
 
@@ -391,10 +392,10 @@
 }
 
 .mm-diff-name {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-style: italic;
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-style: normal;
   font-weight: 800;
-  font-size: clamp(18px, 1.6vw, 23px);
+  font-size: clamp(17px, 1.5vw, 22px);
   color: #ffffff;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -448,8 +449,8 @@
 }
 
 .mm-mode-title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-style: italic;
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-style: normal;
   font-weight: 800;
   font-size: 22px;
   color: #ffffff;
@@ -461,22 +462,170 @@
   color: rgba(255, 245, 230, 0.88);
 }
 
-/* Team Setup Card */
+/* Team Setup Card & Duo Container */
+.mm-setup-container {
+  width: min(840px, 100%);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 2px solid rgba(220, 170, 120, 0.55);
+  border-radius: 28px;
+  padding: clamp(20px, 3vh, 32px) clamp(20px, 3vw, 36px);
+  box-shadow: 0 24px 60px rgba(70, 30, 10, 0.16);
+  z-index: 10;
+  margin: clamp(6px, 1.4vh, 20px) auto auto auto;
+  box-sizing: border-box;
+}
+
+.mm-setup-container.single {
+  width: min(580px, 100%);
+}
+
 .mm-setup-card {
-  width: min(520px, 100%);
-  background: rgba(255, 255, 255, 0.94);
+  width: min(540px, 100%);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border: 2px solid rgba(220, 170, 120, 0.5);
   border-radius: 24px;
-  padding: 36px;
+  padding: 32px;
   box-shadow: 0 20px 50px rgba(70, 30, 10, 0.15);
   z-index: 10;
   margin: auto;
+  box-sizing: border-box;
+}
+
+.mm-setup-subhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(220, 170, 120, 0.35);
+}
+
+.mm-setup-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #934e0c;
+  background: #fdf3e2;
+  border: 1px solid #ebd0b3;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+.mm-teams-duo {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.mm-team-box {
+  flex: 1;
+  background: linear-gradient(180deg, #fffefb 0%, #faf3e8 100%);
+  border: 2px solid #ecd5bd;
+  border-radius: 20px;
+  padding: 16px 18px;
+  box-shadow: 0 6px 18px rgba(70, 30, 10, 0.06);
+  transition: all 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.mm-team-box.team-a.active {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25), 0 10px 24px rgba(245, 158, 11, 0.16);
+  transform: translateY(-2px);
+}
+
+.mm-team-box.team-b.active {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25), 0 10px 24px rgba(16, 185, 129, 0.16);
+  transform: translateY(-2px);
+}
+
+.mm-team-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.mm-team-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.mm-team-tag.tag-a {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.mm-team-tag.tag-b {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.mm-active-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 1px solid currentColor;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mm-team-box.team-a .mm-active-tag {
+  color: #d97706;
+}
+
+.mm-team-box.team-b .mm-active-tag {
+  color: #059669;
+}
+
+.mm-vs-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #3d1a08 0%, #1f0b03 100%);
+  color: #ffdf88;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  border: 2px solid rgba(255, 223, 136, 0.5);
+  box-shadow: 0 4px 14px rgba(40, 15, 5, 0.25);
+  flex-shrink: 0;
 }
 
 .mm-setup-label {
   display: block;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
   color: #381804;
@@ -486,20 +635,81 @@
 
 .mm-setup-input {
   width: 100%;
-  padding: 13px 18px;
+  padding: 12px 16px;
   border-radius: 12px;
   border: 2px solid #ecd5bd;
-  background: #fffdf9;
+  background: #fff;
   font-size: 16px;
   font-weight: 700;
   color: #2b1404;
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s ease;
   box-sizing: border-box;
 }
 
 .mm-setup-input:focus {
-  border-color: #d48220;
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+.mm-preset-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.mm-preset-chip {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e6d3c0;
+  color: #714a27;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.mm-preset-chip:hover {
+  background: #ffedd5;
+  border-color: #f59e0b;
+  color: #9a3412;
+  transform: translateY(-1px);
+}
+
+.mm-preset-chip:active {
+  transform: scale(0.96);
+}
+
+.mm-kb-toggle-btn {
+  background: #fbf5eb;
+  border: 1.5px solid #ecd1b6;
+  color: #633811;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 7px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(70, 30, 10, 0.05);
+}
+
+.mm-kb-toggle-btn:hover {
+  background: #fff;
+  border-color: #d97706;
+  color: #92400e;
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.15);
+}
+
+.mm-kb-toggle-btn.active {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
 }
 
 /* =========================================
@@ -534,9 +744,10 @@
 }
 
 .mm-game-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-weight: 700;
-  font-size: clamp(30px, 4.2vw, 54px);
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: clamp(28px, 3.8vw, 48px);
   line-height: 1.15;
   margin: 0;
   color: #381804;
@@ -566,9 +777,10 @@
 }
 
 .mm-team-header {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-weight: 700;
-  font-size: clamp(22px, 2.2vw, 32px);
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: clamp(20px, 2vw, 28px);
   color: #381804;
   margin-bottom: clamp(8px, 1.4vh, 14px);
   display: flex;
@@ -611,7 +823,8 @@
 }
 
 .mm-timer-target {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-style: normal;
   font-size: clamp(13px, 1.2vw, 15px);
   font-weight: 700;
   color: #381804;
@@ -720,8 +933,21 @@
   }
 
   .mm-panel,
-  .mm-setup-card {
-    padding: 24px;
+  .mm-setup-card,
+  .mm-setup-container {
+    padding: 20px 16px;
+  }
+
+  .mm-teams-duo {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mm-vs-badge {
+    margin: -4px auto;
+    width: 38px;
+    height: 38px;
+    font-size: 12px;
   }
 
   .mm-panel h1 {
