@@ -111,14 +111,14 @@ function MemoryMatchGame({ config, onGoHome }) {
     >
       {/* Top Header with Nebuloid Branding */}
       <header className="mm-game-header">
-        <div className="mm-branding" title="Nebuloid Tech Studio">
+        <div className="absolute top-4 left-20" title="Nebuloid Tech Studio">
           <img
             src={nebuloidLogo}
             alt="Nebuloid Tech Studio"
             className="mm-branding-logo"
           />
         </div>
-        <h1 className="mm-game-title">Memory Match</h1>
+        <h1 className="mm-game-title">Math Memory Match</h1>
       </header>
 
       {/* Main Game Arena: Team A Board | Center Timer | Team B Board */}

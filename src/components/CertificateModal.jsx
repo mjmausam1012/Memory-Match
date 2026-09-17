@@ -319,7 +319,7 @@ export default function CertificateModal({
           {/* Description */}
           <p className="max-w-xl mx-auto text-xs md:text-sm text-[#4a2c16] font-medium leading-relaxed my-4">
             For demonstrating extraordinary cognitive agility, memory precision, and triumphant victory
-            in the official <strong>Memory Match Championship</strong> ({diffLabel} Level • {modeLabel}).
+            in the official <strong>Math Memory Match Championship</strong> ({diffLabel} Level • {modeLabel}).
           </p>
 
           {/* Info grid */}

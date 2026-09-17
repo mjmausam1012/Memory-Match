@@ -18,7 +18,7 @@ const GameHeader = ({ moves, time }) => {
         </div>
       </div>
 
-      <h1 className="game-header__title">Memory Match</h1>
+      <h1 className="game-header__title">Math Memory Match</h1>
 
       <div className="game-header__stat">
         <span className="game-header__icon">⏱️</span>

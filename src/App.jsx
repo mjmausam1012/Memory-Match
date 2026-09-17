@@ -51,7 +51,7 @@ function App({ onExitGame }) {
               />
             </div>
             <span className="mm-welcome-subtitle">W E L C O M E &nbsp; T O</span>
-            <h1 className="mm-main-title">MEMORY MATCH</h1>
+            <h1 className="mm-main-title">MATH MEMORY MATCH</h1>
           </header>
 
           {/* Center Start Action */}
